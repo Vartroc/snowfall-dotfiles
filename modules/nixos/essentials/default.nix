@@ -1,8 +1,6 @@
 
 
 { config, lib, pkgs, inputs, ... }:
-let
-	options.options
 {
 
         # Use the GRUB boot loader.

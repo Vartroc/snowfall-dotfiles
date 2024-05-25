@@ -5,11 +5,11 @@
   	...
 }:
 
-{
+
 let
 	cfg = config.custom.persist;
 in
-
+{
 	options.custom.persist = {
 
 		enable = lib.mkEnableOption "Weather or not to enable impermanence";
@@ -29,6 +29,7 @@ in
         			type = lib.types.listOf lib.types.str;
         			default = [ ];
         			description = "Directories to persist, but not to snapshot";
+			};
 			cache_files = lib.mkOption {
 				type = lib.types.listOf lib.types.str;
 				default = [ ];
@@ -50,7 +51,7 @@ in
 	    	};
 	};
 
-	impermanence = lib.mkIf cfg.enable {
+	config = lib.mkIf cfg.enable {
 		fileSystems."/persist".neededForBoot = true;
 		fileSystems."/".neededForBoot = true;
 		programs.fuse.userAllowOther = true;
@@ -71,7 +72,7 @@ in
 			"/persist/cache" = {
 				hideMounts = true;
 				directories = cfg.root.cache;
-				files = cfg.root.cache
+				files = cfg.root.cache;
 			};
 		};
 				
@@ -109,6 +110,8 @@ in
 	        btrfs subvolume create /btrfs_tmp/root
 	        umount /btrfs_tmp
 	        '';
+		};
+	};
 }
 
 

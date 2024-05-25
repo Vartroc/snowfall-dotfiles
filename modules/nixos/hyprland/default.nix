@@ -5,16 +5,16 @@
 	pkgs,
 	...
 }:
-{
+
 let
 	cfg = config.custom.hyprland;
 in
-
+{
 	options.custom.hyprland = {
-		enable = lib.mkEnableOption "Hyprland and my configuration for it."
+		enable = lib.mkEnableOption "Hyprland and my configuration for it.";
 	};
 
-	hyprland = lib.mkIf cfg.enable {
+	config = lib.mkIf cfg.enable {
 		programs.hyprland.enable = true;
 
 		# Home Manager for Hyprland

@@ -1,5 +1,7 @@
 {
 lib,
+config,
+...
 }:
 {
 	users.users."andi" = {

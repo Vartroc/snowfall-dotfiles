@@ -27,23 +27,6 @@
             		inputs.nixpkgs.follows = "nixpkgs";
         	};
   	};
-/*
-  	outputs = {nixpkgs, home-manager, ...} @ inputs:
-  	{
-    		nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      			specialArgs = {inherit inputs;};
-      			modules = [
-				inputs.disko.nixosModules.default
-        			(import ./disko.nix)
-		
-		        	./configuration.nix
-		              
-		        	inputs.impermanence.nixosModules.impermanence
-				inputs.home-manager.nixosModules.default
-		      	];
-    		};
-  	};
-*/
 	outputs = inputs: 
 		inputs.snowfall-lib.mkFlake {
             		inherit inputs;
